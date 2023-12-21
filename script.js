@@ -6,22 +6,23 @@ function getComputerChoice(){
 }
 console.log(getComputerChoice())
 
+let playerChoice = prompt("Choose your weapon", "rock, paper, or scissors");
+let computerChoice = getComputerChoice()
 
 //Play a round of rock paper scissors
-function playGame(){
-    let playerChoice = prompt("Choose your weapon", "rock, paper, or scissors");
-    let computerChoice = getComputerChoice()
+function playGame(player, computer){
 
-    if(playerChoice === computerChoice){
+    if(player === computer){
         return playGame() 
-    }else if(playerChoice === 'rock' && computerChoice === 'scissors'){
-        return `You Win! ${playerChoice} beats ${computerChoice}` 
-    }else if(playerChoice === 'scissors' && computerChoice === 'paper'){
-        return `You Win! ${playerChoice} beats ${computerChoice}`
-    }else if(playerChoice === 'paper' && computerChoice === 'rock'){
-        return `You Win! ${playerChoice} beats ${computerChoice}`
-    }else
-        return `You Lose! ${computerChoice} beats ${playerChoice}`
+    }else if(player === 'rock' && computer === 'scissors'){
+        return `You Win! ${player} beats ${computer}` 
+    }else if(player === 'scissors' && computer === 'paper'){
+        return `You Win! ${player} beats ${computer}`
+    }else if(player === 'paper' && computerChoice === 'rock'){
+        return `You Win! ${player} beats ${computer}`
+    }else{
+        return `You Lose! ${computer} beats ${player}`
+    }
     
 };
 
