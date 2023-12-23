@@ -1,19 +1,16 @@
 //Get a random computer choice between rock, paper, or scissors
 function getComputerChoice(){
-    let choices = ['rock','paper','scissors'];
+    const choices = ['rock','paper','scissors'];
     let randomChoice = Math.floor(Math.random()*3);
     return choices[randomChoice];
 }
 console.log(getComputerChoice())
 
-let playerChoice = prompt("Choose your weapon", "rock, paper, or scissors");
-let computerChoice = getComputerChoice()
-
 //Play a round of rock paper scissors
 function playGame(player, computer){
 
     if(player === computer){
-        return playGame() 
+        return playGame(prompt("Choose your weapon", "rock, paper, or scissors"), getcomputerChoice())
     }else if(player === 'rock' && computer === 'scissors'){
         return `You Win! ${player} beats ${computer}` 
     }else if(player === 'scissors' && computer === 'paper'){
@@ -26,3 +23,7 @@ function playGame(player, computer){
     
 };
 
+const playerChoice = prompt("Choose your weapon", "rock, paper, or scissors");
+const computerChoice = getComputerChoice()
+
+console.log(playGame(playerChoice,computerChoice))
