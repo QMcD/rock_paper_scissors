@@ -4,7 +4,6 @@ function getComputerChoice(){
     let randomChoice = Math.floor(Math.random()*3);
     return choices[randomChoice];
 }
-console.log(getComputerChoice())
 
 const playerChoice = prompt("Choose your weapon!\n", "rock, paper, or scissors");
 const computerChoice = getComputerChoice()
