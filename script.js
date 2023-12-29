@@ -6,11 +6,14 @@ function getComputerChoice(){
 }
 console.log(getComputerChoice())
 
+const playerChoice = prompt("Choose your weapon!\n", "rock, paper, or scissors");
+const computerChoice = getComputerChoice()
+
 //Play a round of rock paper scissors
 function playGame(player, computer){
 
     if(player === computer){
-        return playGame(prompt("Choose your weapon", "rock, paper, or scissors"), getcomputerChoice())
+        return playGame(prompt("Draw! Choose new weapon!\n", "rock, paper, or scissors"), getComputerChoice())
     }else if(player === 'rock' && computer === 'scissors'){
         return `You Win! ${player} beats ${computer}` 
     }else if(player === 'scissors' && computer === 'paper'){
@@ -21,9 +24,26 @@ function playGame(player, computer){
         return `You Lose! ${computer} beats ${player}`
     }
     
-};
+}
 
-const playerChoice = prompt("Choose your weapon", "rock, paper, or scissors");
-const computerChoice = getComputerChoice()
+let computerScore = 0
+let playerScore = 0
+let scoreBoard = [];
+let x = 0
 
-console.log(playGame(playerChoice,computerChoice))
+function fiveGames(player, computer){
+  
+    if(x < 5){
+        x++
+        if(playGame(player, computer)===`You Lose! ${computer} beats ${player}`){
+            computerScore++
+            fiveGames(prompt("Choose your weapon!\n", "rock, paper, or scissors"),getComputerChoice())
+        }else{
+            playerScore++
+            fiveGames(prompt("Choose your weapon!\n", "rock, paper, or scissors"),getComputerChoice())
+        }
+    }
+    return scoreBoard = [computerScore, playerScore]
+}
+
+console.log(fiveGames(playerChoice, computerChoice)) 
