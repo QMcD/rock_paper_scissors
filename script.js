@@ -42,8 +42,12 @@ function fiveGames(player, computer){
             playerScore++
             fiveGames(prompt("Choose your weapon!\n", "rock, paper, or scissors"),getComputerChoice())
         }
+    }else if(computerScore < playerScore){ 
+        return `You win!`
     }
-    return scoreBoard = [computerScore, playerScore]
+    else{
+        return `Computer Wins!`
+    }
 }
 
 console.log(fiveGames(playerChoice, computerChoice)) 
