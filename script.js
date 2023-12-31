@@ -37,7 +37,7 @@ function showVictor(){
 }
 
 //Play rock, paper, scissors five times
-function bestFive(){
+function playFiveGames(){
 
     roundCounter++
     const playerChoice = prompt("Choose your weapon!", "rock, paper, or scissors").toLowerCase();
@@ -51,10 +51,10 @@ function bestFive(){
     }
 
     if(roundCounter < 5){
-        return bestFive()
+        return playFiveGames()
     }
     return showVictor()
 }
 
-console.log(bestFive())
+console.log(playFiveGames())
 
