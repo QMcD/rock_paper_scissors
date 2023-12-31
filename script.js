@@ -1,53 +1,60 @@
-//Get a random computer choice between rock, paper, or scissors
+//Get a random computerChoice choice between rock, paper, or scissors
 function getComputerChoice(){
     const choices = ['rock','paper','scissors'];
     let randomChoice = Math.floor(Math.random()*3);
     return choices[randomChoice];
 }
-
-const playerChoice = prompt("Choose your weapon!\n", "rock, paper, or scissors");
-const computerChoice = getComputerChoice()
-
 //Play a round of rock paper scissors
-function playGame(player, computer){
+function playGame(playerChoice, computerChoice){
 
-    if(player === computer){
-        return playGame(prompt("Draw! Choose new weapon!\n", "rock, paper, or scissors"), getComputerChoice())
-    }else if(player === 'rock' && computer === 'scissors'){
-        return `You Win! ${player} beats ${computer}` 
-    }else if(player === 'scissors' && computer === 'paper'){
-        return `You Win! ${player} beats ${computer}`
-    }else if(player === 'paper' && computerChoice === 'rock'){
-        return `You Win! ${player} beats ${computer}`
+    if(playerChoice === computerChoice){
+        return playGame(prompt("Draw! Choose again!").toLowerCase(), getComputerChoice()) 
+    }else if(playerChoice === 'rock' && computerChoice === 'scissors'){
+        return `You Win! ${playerChoice} beats ${computerChoice}!` 
+    }else if(playerChoice === 'scissors' && computerChoice === 'paper'){
+        return `You Win! ${playerChoice} beats ${computerChoice}!`
+    }else if(playerChoice === 'paper' && computerChoice === 'rock'){
+        return `You Win! ${playerChoice} beats ${computerChoice}!`
     }else{
-        return `You Lose! ${computer} beats ${player}`
-    }
-    
-}
+        return `You Lose! ${computerChoice} beats ${playerChoice}!`
+    }    
+};
 
+//Global Variables for bestFive functions
+let roundCounter = 0
 let computerScore = 0
 let playerScore = 0
-let scoreBoard = [];
-let x = 0
 
-function fiveGames(player, computer){
-  
-    if(x < 5){
-        x++
-        if(playGame(player, computer)===`You Lose! ${computer} beats ${player}`){
-            computerScore++
-            fiveGames(prompt("Choose your weapon!\n", "rock, paper, or scissors"),getComputerChoice())
-        }else{
-            playerScore++
-            fiveGames(prompt("Choose your weapon!\n", "rock, paper, or scissors"),getComputerChoice())
-        }
-    }else if(computerScore < playerScore){ 
-        showWinner = `You Win! \n You: ${playerScore} | Computer: ${computerScore}`
-    }else if (playerScore < computerScore){
-        showWinner = `Computer Wins! \n Computer: ${computerScore} | You: ${playerScore}`
+//Determine the winner and display message
+function showVictor(){
+    if(playerScore > computerScore){
+        message = `You Win!\nYou: ${playerScore} | Computer: ${computerScore}`
+        return message
+    }else{
+        message = `Computer Wins!\nComputer: ${computerScore} | You: ${playerScore}`
+        return message
     }
-
-    return showWinner
 }
 
-console.log(fiveGames(playerChoice, computerChoice)) 
+//Play rock, paper, scissors five times
+function playFiveGames(){
+
+    roundCounter++
+    const playerChoice = prompt("Choose your weapon!", "rock, paper, or scissors").toLowerCase();
+    const computerChoice = getComputerChoice()
+    const round = playGame(playerChoice, computerChoice)
+    
+    if(round === `You Lose! ${computerChoice} beats ${playerChoice}!`){
+        computerScore++
+    }else{
+        playerScore++
+    }
+
+    if(roundCounter < 5){
+        return playFiveGames()
+    }
+    return showVictor()
+}
+
+console.log(playFiveGames())
+
