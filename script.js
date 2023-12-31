@@ -4,7 +4,7 @@ function getComputerChoice(){
     let randomChoice = Math.floor(Math.random()*3);
     return choices[randomChoice];
 }
-//Play a round of rock paper scissors
+//Play a game of rock paper scissors
 function playGame(playerChoice, computerChoice){
 
     if(playerChoice === computerChoice){
@@ -20,8 +20,8 @@ function playGame(playerChoice, computerChoice){
     }    
 }
 
-//Global Variables for bestFive functions
-let roundCounter = 0;
+//Global Variables for playFiveGames function
+let numberOfGames = 0;
 let computerScore = 0;
 let playerScore = 0;
 
@@ -34,12 +34,12 @@ function showVictor(){
         message = `Computer Wins!\nComputer: ${computerScore} | You: ${playerScore}`;
         return message;
     }
-};
+}
 
 //Play rock, paper, scissors five times
 function playFiveGames(){
 
-    roundCounter++;
+    numberOfGames++;
     const playerChoice = prompt("Choose your weapon!", "rock, paper, or scissors").toLowerCase();
     const computerChoice = getComputerChoice();
     const round = playGame(playerChoice, computerChoice);
@@ -50,7 +50,7 @@ function playFiveGames(){
         playerScore++;
     }
 
-    if(roundCounter < 5){
+    if(numberOfGames < 5){
         return playFiveGames();
     }
     return showVictor();
