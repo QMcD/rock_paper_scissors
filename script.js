@@ -1,28 +1,60 @@
-//Get a random computer choice between rock, paper, or scissors
+//Get a random computerChoice choice between rock, paper, or scissors
 function getComputerChoice(){
     let choices = ['rock','paper','scissors'];
     let randomChoice = Math.floor(Math.random()*3);
     return choices[randomChoice];
 }
-console.log(getComputerChoice())
-
-let playerChoice = prompt("Choose your weapon", "rock, paper, or scissors");
-let computerChoice = getComputerChoice()
-
 //Play a round of rock paper scissors
-function playGame(player, computer){
+function playGame(playerChoice, computerChoice){
 
-    if(player === computer){
-        return playGame() 
-    }else if(player === 'rock' && computer === 'scissors'){
-        return `You Win! ${player} beats ${computer}` 
-    }else if(player === 'scissors' && computer === 'paper'){
-        return `You Win! ${player} beats ${computer}`
-    }else if(player === 'paper' && computerChoice === 'rock'){
-        return `You Win! ${player} beats ${computer}`
+    if(playerChoice === computerChoice){
+        return playGame(prompt("Draw! Choose again!"), getComputerChoice()) 
+    }else if(playerChoice === 'rock' && computerChoice === 'scissors'){
+        return `You Win! ${playerChoice} beats ${computerChoice}!` 
+    }else if(playerChoice === 'scissors' && computerChoice === 'paper'){
+        return `You Win! ${playerChoice} beats ${computerChoice}!`
+    }else if(playerChoice === 'paper' && computerChoice === 'rock'){
+        return `You Win! ${playerChoice} beats ${computerChoice}!`
     }else{
-        return `You Lose! ${computer} beats ${player}`
-    }
-    
+        return `You Lose! ${computerChoice} beats ${playerChoice}!`
+    }    
 };
+
+let roundCounter = 0
+let computerScore = 0
+let playerScore = 0
+
+function bestFive(){
+
+    let playerChoice = prompt("Choose your weapon", "rock, paper, or scissors");
+    let computerChoice = getComputerChoice()
+
+    roundCounter++
+    let round = playGame(playerChoice, computerChoice)
+    
+    if(round === `You Lose! ${computerChoice} beats ${playerChoice}!`){
+        computerScore++
+    }else{
+        playerScore++
+    }
+
+    if(roundCounter < 5){
+        return bestFive()
+    }
+
+    if(playerScore > computerScore){
+        message = `You Win!\n
+        You: ${playerScore} | Computer: ${computerScore}`
+
+        return message
+    }else{
+        message = `Computer Wins!\n
+        Computer: ${computerScore} | You: ${playerScore}`
+
+        return message
+    }
+
+}
+
+console.log(bestFive())
 
