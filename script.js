@@ -20,17 +20,18 @@ function playGame(playerChoice, computerChoice){
     }    
 };
 
+//Global Variables for bestFive functions
 let roundCounter = 0
 let computerScore = 0
 let playerScore = 0
 
+//Play rock, paper, scissors five times
 function bestFive(){
 
-    let playerChoice = prompt("Choose your weapon", "rock, paper, or scissors");
-    let computerChoice = getComputerChoice()
-
     roundCounter++
-    let round = playGame(playerChoice, computerChoice)
+    const playerChoice = prompt("Choose your weapon!", "rock, paper, or scissors");
+    const computerChoice = getComputerChoice()
+    const round = playGame(playerChoice, computerChoice)
     
     if(round === `You Lose! ${computerChoice} beats ${playerChoice}!`){
         computerScore++
