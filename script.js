@@ -25,6 +25,17 @@ let roundCounter = 0
 let computerScore = 0
 let playerScore = 0
 
+//Determine the winner and display message
+function showVictor(){
+    if(playerScore > computerScore){
+        message = `You Win!\nYou: ${playerScore} | Computer: ${computerScore}`
+        return message
+    }else{
+        message = `Computer Wins!\nComputer: ${computerScore} | You: ${playerScore}`
+        return message
+    }
+}
+
 //Play rock, paper, scissors five times
 function bestFive(){
 
@@ -42,19 +53,7 @@ function bestFive(){
     if(roundCounter < 5){
         return bestFive()
     }
-
-    if(playerScore > computerScore){
-        message = `You Win!\n
-You: ${playerScore} | Computer: ${computerScore}`
-
-        return message
-    }else{
-        message = `Computer Wins!\n
-Computer: ${computerScore} | You: ${playerScore}`
-
-        return message
-    }
-
+    return showVictor()
 }
 
 console.log(bestFive())
