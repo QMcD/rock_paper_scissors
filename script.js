@@ -8,7 +8,7 @@ function getComputerChoice(){
 function playGame(playerChoice, computerChoice){
 
     if(playerChoice === computerChoice){
-        return playGame(prompt("Draw! Choose again!"), getComputerChoice()) 
+        return playGame(prompt("Draw! Choose again!").toLowerCase(), getComputerChoice()) 
     }else if(playerChoice === 'rock' && computerChoice === 'scissors'){
         return `You Win! ${playerChoice} beats ${computerChoice}!` 
     }else if(playerChoice === 'scissors' && computerChoice === 'paper'){
@@ -29,7 +29,7 @@ let playerScore = 0
 function bestFive(){
 
     roundCounter++
-    const playerChoice = prompt("Choose your weapon!", "rock, paper, or scissors");
+    const playerChoice = prompt("Choose your weapon!", "rock, paper, or scissors").toLowerCase();
     const computerChoice = getComputerChoice()
     const round = playGame(playerChoice, computerChoice)
     
@@ -45,12 +45,12 @@ function bestFive(){
 
     if(playerScore > computerScore){
         message = `You Win!\n
-        You: ${playerScore} | Computer: ${computerScore}`
+You: ${playerScore} | Computer: ${computerScore}`
 
         return message
     }else{
         message = `Computer Wins!\n
-        Computer: ${computerScore} | You: ${playerScore}`
+Computer: ${computerScore} | You: ${playerScore}`
 
         return message
     }
